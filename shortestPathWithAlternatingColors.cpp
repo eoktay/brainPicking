@@ -56,7 +56,7 @@ public:
       startQueue(adj, starter_queue, starter_visited, 1);
 
       
-      for (int i = 1; i < n; i++) {
+      // for (int i = 1; i < n; i++) {
         queue<vector<int>> queue = starter_queue;
         unordered_set<vector<int>, hasher> visited = starter_visited;
 
@@ -64,10 +64,14 @@ public:
           vector<int> top = queue.front();
           queue.pop();
           
-          if (top[0] == i) {
-            ret[i] = top[2];
-            break;
+          if (ret[top[0]] == -1) {
+            ret[top[0]] = top[2];
           }
+          
+          // if (top[0] == i) {
+          //   ret[i] = top[2];
+          //   break;
+          // }
           
           int new_color = 1 - top[1];
           if (adj.find({top[0], new_color}) != adj.end()) {
@@ -81,7 +85,7 @@ public:
           }
           
         }
-      }
+      // }
       
       return ret;
       
